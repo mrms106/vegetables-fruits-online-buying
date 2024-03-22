@@ -1,0 +1,130 @@
+<%-include("../layouts/head.ejs") %>
+
+	<div class="container">
+		<h1 class="detail_title"><b>Add Details</b></h1>
+       
+		<form class="order-form" method="post" action="/home/confirm">
+			<label class="lab">Enter Your  Name</label>
+			<input class="textfield" type="text" name="buy[name]" placeholder="First Name"><br>
+            
+			<!-- <label class="lab">Enter Your Last Name</label>
+			<input class="textfield" type="text" name="" placeholder="Last Name"><br> -->
+			<label class="lab">Enter Your Address</label>
+			<input class="textfield tf1" type="text" name="buy[address]" placeholder="Address"><br>
+			<label class="lab">Enter Your Area Pincode</label>
+			
+			<input class="textfield tf4" type="number" name="buy[pincode]" placeholder="Pincode"><br>
+            <% let totalPrice = 0; %>
+            <%for(fruits of fruitsInCart){%>
+			<label class="lab"><%=fruits.title%></label>
+			<input type="hidden" name="buy[product]" value="<%=fruits.title%>">
+			<input class="textfield" type="text" name="buy[quantity]" placeholder="enter quantity kg/gram"><br>
+			<% totalPrice += fruits.price; %>
+            <%}%>
+			
+			<% let totalPrice1 = 0; %>
+            <%for(vegs of vegIncart){%>
+			<label class="lab"><%=vegs.title%></label>
+			<input type="hidden" name="buy[product]" value="<%=vegs.title%>">
+			<input class="textfield" type="text" name="buy[quantity]" placeholder="enter quantity kg/gram"><br>
+			<% totalPrice1 += vegs.price; %>
+            <%}%>
+			<%let finalprice= totalPrice + totalPrice1%>
+			
+            <label class="lab">Total Price</label>
+           
+			<input class="textfield" type="text" name="buy[total]" value="₹<%= finalprice %>" readonly><br>
+			<!-- <label class="lab">Select Unit</label>
+			<select class="textfield tf3" name="unit" placeholder="Select Unit">
+      			<option value="">Unit (gram / Kg)</option>
+      			<option value="male">Gram</option>
+      			<option value="female">Kilogram</option>
+    		</select><br><br> -->
+
+    		<button type="submit">Place Order</button>
+    		<!-- <button type="button" class="btn btn-outline-danger" onclick="cancel()">Cancel</button> -->
+		</form>
+       
+	</div>
+
+	<script type="text/javascript">
+		function order(){
+			window.location.href = "thanku.html";
+		}
+		function cancel(){
+			window.location.href = "buyFruit.html";
+		}
+	</script>
+	<style>
+		.pricehide{
+			display: none;
+		}
+	/*body{
+	text-align: center;
+}*/
+
+
+.container{
+	
+	justify-content: center;
+	align-items: center;
+	
+}
+h1{
+	margin-left: 15rem;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	margin-top: 3rem;
+	margin-left: 15rem;
+}
+form input{
+	margin-top: 0.5rem;
+	width: 40rem;
+	border: 0.5px solid gray;
+	border-radius: 20px;
+	height: 50px;
+	outline: none;
+}
+form button{
+	border-radius: 24px !important;
+	width: 20rem;
+	height: 40px;
+	border: 2px solid red;
+	background-color:white;
+	font-size: 20px;
+	color: black;
+
+}
+form button:hover{
+ background-color: red;
+ color: white;
+}
+form label{
+	font-size: 18px;
+	color: black;
+}
+@media(max-width:768px){
+	h1{
+		margin-left: 20px;
+	}
+	form{
+		
+		margin-left: 20px;
+	}
+	form input{
+		
+		width: auto;
+		
+	}
+	form button{
+		
+		width: auto;
+		
+	
+	}
+	
+}
+	</style>
+<%-include("../includes/footer.ejs")%>

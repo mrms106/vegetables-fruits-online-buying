@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Welcome || Start Buying</title>
+	<link rel="stylesheet" type="text/css" href="/home.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="icon" href="/images/logo.png" type="image/x-icon">
+
+</head>
+<body>
+	
+
+
+<body>
+	<div class="row">
+		<div class="col-lg-2">
+			<img class="home_fruit_img" src="images/fruit_bg.png">
+		</div>
+		<div class="col-lg-2 system_name">
+			<h1 class="name1">Vegetables & Fruits</h1><br>
+			<h4 class="name2">ORDERING SYSTEM</h4>
+			<button type="button" class="btn btn-outline-dark btn-lg" onclick="order()">Order Now</button>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function order(){
+			window.location.href = "/home/order";
+		}
+	</script>
+</body>
+</html>
+<style>
+	body{
+	background-color: #708090;
+}
+.home_fruit_img{
+	width: 935px;
+}
+.system_name{
+	margin-left: 420px;
+	margin-top: 180px;
+	/*text-align: center;*/
+}
+.name1{
+	width: 600px;
+	margin-bottom: -10px;
+	font-size: 60px;
+	color: #fff;
+}
+.name2{
+	width: 300px;
+	margin-left: 150px;
+	color: #fff;
+}
+
+.btn{
+	margin-left: 180px;
+	margin-top: 30px;
+	color: #fff;
+	outline-color: transparent;
+    outline-style:solid;
+    box-shadow: 0 0 0 4px #151515;
+}
+@media(max-width:500px){
+	.home_fruit_img{
+		width: 100%;
+	}
+	.system_name{
+	margin-left: 20px;
+	margin-top: 180px;
+	/*text-align: center;*/
+}
+.name1{
+	width: auto;
+	margin-bottom: -10px;
+	font-size: 60px;
+	color: #fff;
+}
+.name2{
+	width: 300px;
+	margin-left:14%;
+	color: #fff;
+}
+.btn{
+	margin-left: 20%;
+	margin-top: 30px;
+	color: #fff;
+	outline-color: transparent;
+    outline-style:solid;
+    box-shadow: 0 0 0 4px #151515;
+}
+}
+
+
+</style>

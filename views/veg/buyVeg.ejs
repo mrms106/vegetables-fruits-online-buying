@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="/buyVeg.css">	
+
+
+<%-include("../layouts/head.ejs") %>
+
+
+	<section id="item_sec">
+		<div class="container">
+				<h1 class="title"><b>Our Products :</b></h1>
+				<% if (currUser.username == "admin" ){%>
+					<a href="/home/addveg"><h3 class="title"> List product </h3></a>
+					<%}%>
+			<div class="row">
+				<% for(let vegetable of Veg) { %>
+				<div class="card col-ml-4" style="width: 18rem;">
+					
+					<img class="card-img-top veg_img" src="<%=vegetable.image%>" alt="vegetable">
+					<div class="card-body">
+						<h5 class="card-title"><%=vegetable.title%></h5>
+						<h6 class="price">1 Kg - <%=vegetable.price%></h6>
+						<a href="/home/order/veg/<%=vegetable._id%>/confirm" class="btn btn-primary mt-3" >Buy Now</a>
+
+						<% if (!vegetable.mycart.includes(currUser._id)) { %>
+							<form action="/home/addtocart/<%= vegetable._id %>" method="POST">
+								<button type="submit" class="btn btn-success mt-3">Add to Cart</button>
+							  </form>	
+							  <% } else { %>
+								
+									<button type="submit" class="btn btn-success mt-3">Added in Cart</button>
+								
+								  <% } %>
+								  <%if (currUser.username == "admin"){%>
+									<form action="/home/deleteveg/<%= vegetable._id %>" method="POST">
+									  <button type="submit" class="btn btn-success mt-3">Delete</button>
+									</form>	
+									<%}%>		
+						
+					</div>
+
+					
+				</div>
+				<%}%>
+			</div> 
+
+		</div>
+			
+			
+				
+	</section>
+	<script type="text/javascript">
+		function order(){
+			window.location.href = "/home/order/veg/confirm";
+		}
+	</script>
+<%-include("../includes/footer.ejs")%>

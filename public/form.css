@@ -1,0 +1,12 @@
+.f-info{
+    display: flex;
+    height: 15rem;
+    /* background-color: #ebebeb; */
+    /* background-color: rgba(169, 169, 169, 0.681); */
+    background-image: url("ordertitle.jpg");
+    background-position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+    text-align: center;
+}

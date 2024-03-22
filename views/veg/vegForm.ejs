@@ -1,0 +1,94 @@
+<%-include("../layouts/head.ejs") %>
+
+	<div class="container">
+		<h1 class="detail_title"><b>Add Details</b></h1>
+		<form class="order-form" method="post" action="/home/confirm">
+			<label class="lab">Enter Your  Name</label>
+			<input class="textfield" type="text" name="buy[name]" placeholder="Last Name"><br>
+			<label class="lab">Enter Your Address</label>
+			<input class="textfield tf1" type="text" name="buy[address]" placeholder="Address"><br>
+			<label class="lab">Enter Your Area Pincode</label>
+			<input class="textfield tf4" type="number" name="buy[pincode]" placeholder="Pincode"><br>
+			
+				<label class="lab"><%=Veg.title%></label>
+				<input type="hidden" name="buy[product]" value="<%=Veg.title%>">
+				<input class="textfield" type="text" name="buy[quantity]" placeholder="enter quantity kg/gram"><br>
+				<label class="lab">Total Price</label>
+				<input class="textfield" type="text" name="buy[total]" value="₹<%= Veg.price %>" readonly><br>
+			
+    		<button type="submit"  >Submit</button>
+    		<!-- <button type="button" class="btn btn-outline-danger" onclick="cancel()">Cancel</button> -->
+			
+		</form>
+	</div>
+		
+	<style>
+		/*body{
+	text-align: center;
+}*/
+
+
+.container{
+	
+	justify-content: center;
+	align-items: center;
+	
+}
+h1{
+	margin-left: 15rem;
+}
+form{
+	display: flex;
+	flex-direction: column;
+	margin-top: 3rem;
+	margin-left: 15rem;
+}
+form input{
+	margin-top: 0.5rem;
+	width: 40rem;
+	border: 0.5px solid gray;
+	border-radius: 20px;
+	height: 50px;
+	outline: none;
+}
+form button{
+	border-radius: 24px !important;
+	width: 20rem;
+	height: 40px;
+	border: 2px solid red;
+	background-color:white;
+	font-size: 20px;
+	color: black;
+
+}
+form button:hover{
+ background-color: red;
+ color: white;
+}
+form label{
+	font-size: 18px;
+	color: black;
+}
+@media(max-width:768px){
+	h1{
+		margin-left: 20px;
+	}
+	form{
+		
+		margin-left: 20px;
+	}
+	form input{
+		
+		width: auto;
+		
+	}
+	form button{
+		
+		width: auto;
+		
+	
+	}
+	
+}
+	</style>
+	<%-include("../includes/footer.ejs")%>

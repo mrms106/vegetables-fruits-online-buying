@@ -1,0 +1,38 @@
+<link rel="stylesheet" type="text/css" href="/order.css">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<%-include("../layouts/head.ejs") %>
+
+
+	<section id="item_sec">
+		<div class="container">
+			<h1 class="title"><b>Our Services :</b></h1>
+			<div class="row">
+			<div class="card col-ml-6" style="width: 18rem;">
+  				<img class="card-img-top veg_img" src="/images/veg.jpg" alt="vegetable">
+  				<div class="card-body">
+    				<h5 class="card-title">Vegetables</h5>
+    				<a href="#" class="btn btn-primary mt-3" onclick="buyVeg()">Buy Now</a>
+  				</div>
+			</div>
+			<div class="card col-ml-6" style="width: 18rem;">
+  				<img class="card-img-top fruit_img" src="/images/fruits.jpg" alt="fruits">
+  				<div class="card-body">
+    				<h5 class="card-title">Fruits</h5>
+    				<a href="#" class="btn btn-primary mt-3" onclick="buyFruit()">Buy Now</a>
+  				</div>
+			</div>
+			</div>
+
+			</div>
+				
+	</section>
+	<script type="text/javascript">
+		function buyVeg(){
+			window.location.href = "/home/order/veg";
+		}
+		function buyFruit(){
+			window.location.href = "/home/order/fruit";
+		}
+	</script>
+<%-include("../includes/footer.ejs")%>

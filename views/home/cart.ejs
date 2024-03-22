@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" href="/buyFruit.css">
+
+<%-include("../layouts/head.ejs") %>
+	<section id="item_sec">
+		<div class="container">
+			<h1 class="title"><b>MY Cart :</b></h1>
+			<div class="row">
+              
+                <% let totalPrice = 0; %>
+				<%for (fruits of Fruit){%>
+			<div class="card col-ml-4" style="width: 18rem;">
+  				<img class="card-img-top veg_img" src="<%=fruits.image%>" alt="vegetable">
+  				<div class="card-body">
+    				<h5 class="card-title"><%=fruits.title%></h5>
+    				<h6 class="price">1 Kg - ₹<%=fruits.price%></h6>
+    				<!-- <a href="/home/order/Fruit/<%=fruits._id%>/confirm" class="btn btn-primary" onclick="order()">Buy Now</a> -->
+					
+						
+					<form action="/home/order/fruit/<%= fruits._id %>" method="POST">
+						<button type="submit" class="btn btn-success mt-3">remove from Cart</button>
+					  </form>						
+  				</div>
+			</div>
+            <% totalPrice += fruits.price; %>
+			<%}%>
+          
+			</div>
+
+			</div>
+
+
+
+			<div class="container">
+				
+				<div class="row">
+				  
+					<% let totalPrice1 = 0; %>
+					<%for (vegs of Veg){%>
+				<div class="card col-ml-4" style="width: 18rem;">
+					  <img class="card-img-top veg_img" src="<%=vegs.image%>" alt="vegetable">
+					  <div class="card-body">
+						<h5 class="card-title"><%=vegs.title%></h5>
+						<h6 class="price">1 Kg - ₹<%=vegs.price%></h6>
+
+						<form action="/home/order/veg/<%= vegs._id %>" method="POST">
+							<button type="submit" class="btn btn-success">remove from Cart</button>
+						  </form>						
+					  </div> 
+				</div>
+				<% totalPrice1 += vegs.price; %>
+				<%}%>
+				
+				</div>
+	
+				</div> 
+				
+					<% let finalprice = totalPrice + totalPrice1 %>
+					
+					<div class="col-13  mt-4 mb-4">
+						<h5>Total Price of Fruits and Vegetables Combined: ₹<%= finalprice %></h5>
+				  
+					<a href="/home/buy" class="btn btn-primary mt-4">Proceed to Buy</a>
+					
+				</div>
+
+				
+	</section>
+<style>
+	body{
+	text-align: center;
+}
+.title{
+	margin-top: 50px;
+	color: red;
+}
+.card{
+	margin-left: 70px;
+	margin-top: 80px;
+	padding-bottom: 20px;
+}
+.veg_img{
+	height: 170px;
+}
+.fruit_img{
+	height: 170px;
+}
+.price{
+	margin-top: -10px;
+	margin-bottom: 25px;
+}
+</style>
+<%-include("../includes/footer.ejs")%>
