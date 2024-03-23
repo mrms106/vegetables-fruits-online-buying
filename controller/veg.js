@@ -6,7 +6,7 @@ const User=require("../modules/user");
 module.exports.vegmain=async(req,res)=>{
     const Veg=await veg.find({});
     const currUser = req.user; 
-    res.render("./veg/buyveg.ejs",{Veg,currUser});
+    res.render("./veg/buyVeg.ejs",{Veg,currUser});
 }
 
 module.exports.vegaddcartroute= async (req, res) => {
