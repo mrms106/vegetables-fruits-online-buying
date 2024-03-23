@@ -51,7 +51,7 @@ module.exports.fruitbuy=async(req,res)=>{
     try{
         const { id } = req.params; 
         const Fruit = await fruit.findById(id); 
-        res.render("./fruit/fruitform.ejs", { Fruit });
+        res.render("./fruit/fruitForm.ejs", { Fruit });
 }catch(err){
   req.flash("error", "something went wrong!");
     console.log(err)

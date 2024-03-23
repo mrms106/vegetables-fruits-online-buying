@@ -50,7 +50,7 @@ module.exports.vegbuy=async(req,res)=>{
         const { id } = req.params; 
         const Veg = await veg.findById(id); 
     
-        res.render("./veg/vegform.ejs", { Veg });
+        res.render("./veg/vegForm.ejs", { Veg });
 }catch(err){
     res.send(err)
     req.flash("error", "something went wrong!");

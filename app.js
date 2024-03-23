@@ -29,7 +29,7 @@ const usercontroller=require("./controller/user");
 const dbUrl="mongodb://127.0.0.1:27017/vegetables"
 const atlasurl=process.env.Atlas_db
 try{
-    mongoose.connect(atlasurl)
+    mongoose.connect(dbUrl)
       .then(() => console.log('Connected to the database'));
     }catch(err){
         console.log(err);
