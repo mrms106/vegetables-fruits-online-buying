@@ -1,0 +1,33 @@
+
+<%-include("../layouts/head.ejs") %>
+<div class="container">
+<div class="row mt-3">
+
+    <div class="alert alert-danger col-6 offset-3" role="alert">
+       <p class="alert-heading"><%= message%> or The Entered Link Is wrong<br>
+        go to homepage...!<br>
+       <a href="/home"><button>Home </button></a> 
+    </p>
+       
+      </div>
+
+</div>
+</div>
+<style>
+    .container{
+        height: 25vh;
+    }
+    button{
+        border: 2px solid red;
+        border-radius: 18px;
+        background-color: white;
+        width: 70px;
+        height: 40px;
+
+    }
+    button:hover{
+        background-color: red;
+        color: white;
+    }
+</style>
+<%-include("../includes/footer.ejs")%>

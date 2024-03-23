@@ -14,6 +14,7 @@ const isLoggedIn = (req, res, next) => {
 
 router.get("/",isLoggedIn,homepagecontroller.homepage);
 router.get("/order",isLoggedIn,homepagecontroller.orderpage);
+router.get("/services",isLoggedIn,homepagecontroller.services)
 
 router.get("/order/veg",isLoggedIn,vegcontroller.vegmain);
 router.get("/addveg",isLoggedIn,vegcontroller.createveg);

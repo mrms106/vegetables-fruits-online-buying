@@ -1,11 +1,13 @@
 const mongoose=require("mongoose");
-const initData=require("./data");
-// const initData=require("./Fruit data complete");
+// const initData=require("./data");
+// const initData=require("./fruitdata");
+const initData=require("./vegdat");
+
 
 const veg =require("../modules/veg");
 const fruit =require("../modules/fruit");
 
-const MONGO_URL="mongodb://127.0.0.1:27017/vegetables"
+const MONGO_URL="mongodb+srv://mhs93679:gFhrNR1R7XQgDETX@cluster1.ktg1xuu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
 
 main()
 .then(()=>{
@@ -20,9 +22,9 @@ async function main() {
 
 const initDB=async()=>{
     await veg.deleteMany({});
-    await fruit.deleteMany({});
-    await veg.insertMany(initData.data)
-    await fruit.insertMany(initData.data)
+    await veg.insertMany(initData.data);
+    // await fruit.deleteMany({});
+    // await fruit.insertMany(initData.data)
  console.log("data is intialized")
 
 };

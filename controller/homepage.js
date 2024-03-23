@@ -14,6 +14,9 @@ module.exports.orderpage=(req,res)=>{
     res.render("./home/order.ejs");
 }
 
+module.exports.services=(req,res)=>{
+  res.render("./home/services.ejs");
+}
 module.exports.cartpage=async(req,res)=>{
     const userId = req.user._id; 
     

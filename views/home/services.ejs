@@ -1,0 +1,38 @@
+<%-include("../layouts/head.ejs") %>
+<section id="services">
+    <h2>Our Services :</h2>
+    <div class="service">
+        <h3>Home Delivery</h3>
+        <p>We offer convenient home delivery of fresh fruits and vegetables right to your doorstep.</p>
+    </div>
+    <div class="service">
+        <h3>Quality Guarantee</h3>
+        <p>Our products are sourced from trusted suppliers and undergo rigorous quality checks to ensure freshness and taste.</p>
+    </div>
+    <div class="service">
+        <h3>Custom Orders</h3>
+        <p>Have specific preferences? We allow custom orders so you get exactly what you want.</p>
+    </div>
+    <div class="service">
+        <h3>24/7 Customer Support</h3>
+        <p>Need assistance? Our dedicated customer support team is available round the clock to help you.</p>
+    </div>
+</section>
+<%-include("../includes/footer.ejs")%>
+
+<style>
+#services{
+    margin-left: 30%;
+   
+}
+h2{
+    color: red;
+    margin-bottom: 20px;
+}
+@media(max-width:768px){
+    #services{
+    margin-left: 10px;
+   
+}
+}
+</style>

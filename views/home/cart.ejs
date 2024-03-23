@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="/buyFruit.css">
 
 <%-include("../layouts/head.ejs") %>
-	<section id="item_sec">
+	<section id="item_sec" >
 		<div class="container">
 			<h1 class="title"><b>MY Cart :</b></h1>
 			<div class="row">
@@ -55,16 +55,24 @@
 				</div> 
 				
 					<% let finalprice = totalPrice + totalPrice1 %>
-					
+<!-- 					
 					<div class="col-13  mt-4 mb-4">
 						<h5>Total Price of Fruits and Vegetables Combined: ₹<%= finalprice %></h5>
 				  
-					<a href="/home/buy" class="btn btn-primary mt-4">Proceed to Buy</a>
+					<a href="" class="btn btn-primary mt-4">Proceed to Buy</a>
 					
-				</div>
+				</div> -->
 
 				
 	</section>
+	<!-- byuing button -->
+<div class="buy-now-container">
+    <div class="price">Cart Price:&nbsp; ₹<%= finalprice %></div>
+   
+        <a href="/home/buy">
+			 <button class="book-btn">Buy-Now</button></a>
+       
+  </div>
 <style>
 	body{
 	text-align: center;
@@ -88,5 +96,63 @@
 	margin-top: -10px;
 	margin-bottom: 25px;
 }
+.buy-now-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.price {
+  font-weight: bold;
+  
+}
+
+.buy-now-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.book-btn{
+        height: 3rem;
+        width: 7rem;
+        background-color: #fe434d;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        text-decoration: none;
+    
+    }
+    .book-btn:hover{
+        opacity: 0.8;
+        height: 2.8rem;
+        width: 6.8rem;
+    }
+
+/* Adjust the style for screens larger than 500px */
+@media (min-width: 500px) {
+  .buy-now-container {
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+    margin-left: 25%;
+  }
+
+  .price {
+    margin-right: 45%; /* Add margin to separate price and button */
+  }
+}
+
 </style>
+<div class="top" style="margin-top: 100px;"></div>
 <%-include("../includes/footer.ejs")%>

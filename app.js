@@ -1,3 +1,8 @@
+//dotenv is package which accesse credentials from .env for upload image
+if(process.env.NODE_ENV !="production"){
+    require('dotenv').config();
+    
+    }
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
@@ -21,9 +26,11 @@ const home=require("./routes/allrouter.js");
 const usercontroller=require("./controller/user");
 
 //databse
+const dbUrl="mongodb://127.0.0.1:27017/vegetables"
+const atlasurl=process.env.Atlas_db
 try{
-    mongoose.connect('mongodb://127.0.0.1:27017/vegetables')
-      .then(() => console.log('Connected to database'));
+    mongoose.connect(atlasurl)
+      .then(() => console.log('Connected to the database'));
     }catch(err){
         console.log(err);
     }
@@ -77,9 +84,18 @@ app.get("/logout",usercontroller.logout)
 //accessing pages
 app.use("/home",home);
 
-// app.all("*",(req,res,next)=>{
-//     next(new expresserr(404,"page not found"));
-// });
+
+app.all("*",(req,res,next)=>{
+    next(new expresserr(404,"page not found"));
+});
+
+app.use((err,req,res,next)=>{
+    let{statuscode=500,message="something Went Wrong"}=err;
+    res.status(statuscode).render("./home/error.ejs",{message});
+    // res.status(statuscode).send(message);
+
+});
+
 
 app.listen("8080",()=>{
     console.log("running on port 8080");

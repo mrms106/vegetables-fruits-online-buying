@@ -19,7 +19,7 @@ module.exports.signuproute=async(req,res)=>{
             return next(err);
         }
         req.flash("success", "Welcome you are logged in!");
-    res.redirect("/home/order");
+    res.redirect("/home");
        })
     } catch(e){
         req.flash("error",e.message);
@@ -35,7 +35,7 @@ module.exports.login=(req,res)=>{
 
 module.exports.loginroute=async(req,res)=>{
     req.flash("success", "Welcome you are logged in!");
-    res.redirect("/home");
+    res.redirect("/home/order");
 }
 
 module.exports.logout=(req,res,next)=>{
