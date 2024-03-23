@@ -88,3 +88,4 @@ module.exports.deleteveg=async(req,res)=>{
     res.redirect('/home/order/veg');
 }
 }
+
