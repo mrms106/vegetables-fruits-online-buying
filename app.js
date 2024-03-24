@@ -41,7 +41,7 @@ app.use(methodOverride("_method"))
 app.engine("ejs",ejsMate);
 //for session
 const store=MongoStore.create({
-    mongoUrl:dbUrl,
+    mongoUrl:atlasurl,
     crypto:{
         secret:process.env.SECRET,
     },
