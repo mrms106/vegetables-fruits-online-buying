@@ -53,14 +53,15 @@ store.on("error",()=>{
 });
 //authentication
 const sessionOptions={
-    saveUninitialized:true,
-    resave:false,
+    store,
     secret:process.env.SECRET,
+    resave:false,
+    saveUninitialized:true,
     //session store
     saveUninitialized:true,
     cookie:{
         expires:Date.now()+ 7*24*60*60*1000,
-        maxAge:7*24*60*60*1000,
+        maxAge:3*24*60*60*1000,
         httpOnly:true,
     }
 }
