@@ -14,28 +14,24 @@ const fruit=require("./modules/fruit");
 const User=require("./modules/user");
 const buy=require("./modules/buy")
 const ejsMate=require("ejs-mate");
-
+const MongoStore = require('connect-mongo');
 //for user authentication
 const passport=require("passport");
 const localStratergy=require("passport-local");
 const session=require("express-session");
 const flash=require("connect-flash");
-//router
-const home=require("./routes/allrouter.js");
-//controllers
-const usercontroller=require("./controller/user");
 
-//databse
+const home=require("./routes/allrouter.js");
+const user=require("./routes/user.js");
+
 const dbUrl="mongodb://127.0.0.1:27017/vegetables"
 const atlasurl=process.env.Atlas_db
 try{
     mongoose.connect(atlasurl)
-      .then(() => console.log('Connected to the database'));
+      .then(() => console.log('Connected to the database of Makardhwaj computer'));
     }catch(err){
         console.log(err);
     }
-
-
 
 app.set("view engine","ejs")
 app.set("views",path.join(__dirname,"views"));
@@ -43,12 +39,30 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"))
 app.engine("ejs",ejsMate);
+//for session
+const store=MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24*3600,
+});
 
-
+store.on("error",()=>{
+    console.log("Error in mongo session store",err);
+});
+//authentication
 const sessionOptions={
     saveUninitialized:true,
     resave:false,
-    secret:"secret"
+    secret:process.env.SECRET,
+    //session store
+    saveUninitialized:true,
+    cookie:{
+        expires:Date.now()+ 7*24*60*60*1000,
+        maxAge:7*24*60*60*1000,
+        httpOnly:true,
+    }
 }
 
 app.use(session(sessionOptions));
@@ -67,23 +81,12 @@ app.use((req,res,next)=>{
     next();
 });
 
-
-
 app.get("/",(req,res)=>{
     res.redirect("/login")
 });
 
-//user authentication
-app.get("/signup",usercontroller.signup);
-app.post("/signup",usercontroller.signuproute);
-app.get("/login",usercontroller.login)
-app.post("/login",passport.authenticate("local",{failureRedirect:'/login'}),usercontroller.loginroute)
-app.get("/logout",usercontroller.logout)
-
-
-//accessing pages
 app.use("/home",home);
-
+app.use(user);
 
 app.all("*",(req,res,next)=>{
     next(new expresserr(404,"page not found"));
@@ -98,7 +101,7 @@ app.use((err,req,res,next)=>{
 
 
 app.listen("8080",()=>{
-    console.log("running on port 8080");
+    console.log("running on port 8080 On Makardhwaj computer");
 })
 
 

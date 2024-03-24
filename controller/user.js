@@ -5,7 +5,7 @@ const User=require("../modules/user");
 
 
 module.exports.signup=(req,res)=>{
-    res.render("./user/signup.ejs")
+    res.render("./user/signup.ejs");
 }
 
 
@@ -18,8 +18,9 @@ module.exports.signuproute=async(req,res)=>{
         if(err){
             return next(err);
         }
+        console.log(process.env.name);
         req.flash("success", "Welcome you are logged in!");
-    res.redirect("/home");
+        res.redirect("/home");
        })
     } catch(e){
         req.flash("error",e.message);
@@ -29,7 +30,7 @@ module.exports.signuproute=async(req,res)=>{
 }
 
 module.exports.login=(req,res)=>{
-    
+    console.log(process.env.name);
     res.render("./user/login.ejs")
 }
 
