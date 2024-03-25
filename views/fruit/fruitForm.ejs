@@ -12,16 +12,37 @@
 			
 				<label class="lab"><%=Fruit.title%></label>
 				<input type="hidden" name="buy[product]" value="<%=Fruit.title%>">
-				<input class="textfield" type="text" name="buy[quantity]" placeholder="enter quantity kg/gram"><br>
+				<input class="textfield" type="number" id="price" name="buy[quantity]" value="1"  required ><br>
+			   <input type="hidden" name="price" id="basePrice" value="<%=Fruit.price%>">
 				<label class="lab">Total Price</label>
-				<input class="textfield" type="text" name="buy[total]" value="₹<%= Fruit.price %>" readonly><br>
-			
+				<input id="totalPriceInput" name="totalPrice" value="₹<%= Fruit.price %>"  readonly>
     		<button type="submit"  >Submit</button>
     		<!-- <button type="button" class="btn btn-outline-danger" onclick="cancel()">Cancel</button> -->
 			
 		</form>
 	</div>
 	<%-include("../includes/footer.ejs")%>
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", function() {
+			
+			const quantityInput = document.getElementById('price');
+			
+			const basePriceInput = document.getElementById('basePrice');
+		
+			const totalPriceInput = document.getElementById('totalPriceInput');
+	
+			quantityInput.addEventListener('input', function() {
+				let quantity = parseFloat(quantityInput.value);
+				quantity = isNaN(quantity) ? 0 : quantity;
+				let basePrice = parseFloat(basePriceInput.value);
+				basePrice = isNaN(basePrice) ? 0 : basePrice;
+	
+				const totalPrice = quantity * basePrice;
+				totalPriceInput.value = totalPrice.toFixed(2); // Displaying with 2 decimal places
+			});
+		});
+	</script>
+	
 <style>
 	/*body{
 	text-align: center;

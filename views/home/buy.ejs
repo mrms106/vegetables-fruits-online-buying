@@ -5,20 +5,21 @@
        
 		<form class="order-form" method="post" action="/home/confirm">
 			<label class="lab">Enter Your  Name</label>
-			<input class="textfield" type="text" name="buy[name]" placeholder="First Name"><br>
+			<input class="textfield" type="text" name="buy[name]" placeholder="First Name" required><br>
             
 			<!-- <label class="lab">Enter Your Last Name</label>
 			<input class="textfield" type="text" name="" placeholder="Last Name"><br> -->
 			<label class="lab">Enter Your Address</label>
-			<input class="textfield tf1" type="text" name="buy[address]" placeholder="Address"><br>
+			<input class="textfield tf1" type="text" name="buy[address]" placeholder="Address" required><br>
 			<label class="lab">Enter Your Area Pincode</label>
 			
-			<input class="textfield tf4" type="number" name="buy[pincode]" placeholder="Pincode"><br>
+			<input class="textfield tf4" type="number" name="buy[pincode]" placeholder="Pincode" required><br>
             <% let totalPrice = 0; %>
             <%for(fruits of fruitsInCart){%>
 			<label class="lab"><%=fruits.title%></label>
 			<input type="hidden" name="buy[product]" value="<%=fruits.title%>">
-			<input class="textfield" type="text" name="buy[quantity]" placeholder="enter quantity kg/gram"><br>
+			<input class="textfield" type="number" id="price" name="buy[quantity]" value="1"  required ><br>
+			<input type="hidden" name="price" id="basePrice" value="<%=fruits.price%>">
 			<% totalPrice += fruits.price; %>
             <%}%>
 			
@@ -26,12 +27,13 @@
             <%for(vegs of vegIncart){%>
 			<label class="lab"><%=vegs.title%></label>
 			<input type="hidden" name="buy[product]" value="<%=vegs.title%>">
-			<input class="textfield" type="text" name="buy[quantity]" placeholder="enter quantity kg/gram"><br>
+			<input class="textfield" type="number" id="price" name="buy[quantity]" value="1"  required ><br>
+			<input type="hidden" name="price" id="basePrice" value="<%=vegs.price%>">
 			<% totalPrice1 += vegs.price; %>
             <%}%>
 			<%let finalprice= totalPrice + totalPrice1%>
 			
-            <label class="lab">Total Price</label>
+            <!-- <label class="lab">Total Price</label> -->
            
 			<!-- <input class="textfield" type="text" name="buy[total]" value="₹<%= finalprice %> this only total of 1kg of product " readonly><br> -->
 			<!-- <label class="lab">Select Unit</label>
@@ -40,8 +42,12 @@
       			<option value="male">Gram</option>
       			<option value="female">Kilogram</option>
     		</select><br><br> -->
+			<label for="totalPriceInput" class="form-label">
+				Total Price:
+			</label>
+			<input id="totalPriceInput" name="totalPrice" value="₹<%= finalprice %>"  readonly>
 
-    		<button type="submit">Place Order</button>
+    		<button type="submit" class="mt-3">Place Order</button>
     		<!-- <button type="button" class="btn btn-outline-danger" onclick="cancel()">Cancel</button> -->
 		</form>
        
@@ -55,6 +61,47 @@
 			window.location.href = "buyFruit.html";
 		}
 	</script>
+	
+		<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        const quantityInputs = document.querySelectorAll('input[name="buy[quantity]"]');
+        const basePriceInputs = document.querySelectorAll('input[name="price"]');
+        const totalPriceInput = document.getElementById('totalPriceInput');
+
+        // Add event listeners to all quantity input fields
+		
+        quantityInputs.forEach(function(input, index) {
+            input.addEventListener('input', function() {
+                let quantity = parseFloat(input.value);
+                quantity = isNaN(quantity) ? 0 : quantity;
+				console.log("Quantity:", quantity); // Debugging
+                let basePrice = parseFloat(basePriceInputs[index].value);
+                basePrice = isNaN(basePrice) ? 0 : basePrice;
+				console.log("Base Price:", basePrice); // Debugging
+
+                let totalPrice = quantity * basePrice;
+				console.log("Total Price:", totalPrice); // Debugging
+
+                // if (index > 0 || index === quantityInputs.length - 1) {
+                //     totalPrice += parseFloat(totalPriceInput.value);
+                // }
+				
+				let finalTotalPrice = 0;
+            quantityInputs.forEach(function(input, idx) {
+                let qty = parseFloat(input.value);
+                qty = isNaN(qty) ? 0 : qty;
+                let price = parseFloat(basePriceInputs[idx].value);
+                price = isNaN(price) ? 0 : price;
+                finalTotalPrice += qty * price;
+            });
+                totalPriceInput.value = finalTotalPrice.toFixed(2); // Displaying with 2 decimal places
+            });
+        });
+
+    });
+</script>
+
+	</script>
 	<style>
 		.pricehide{
 			display: none;
@@ -62,6 +109,7 @@
 	/*body{
 	text-align: center;
 }*/
+
 
 
 .container{
