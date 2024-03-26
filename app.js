@@ -23,6 +23,9 @@ const flash=require("connect-flash");
 
 const home=require("./routes/allrouter.js");
 const user=require("./routes/user.js");
+const vegroute=require("./routes/veg.js")
+const fruitroute=require("./routes/fruit.js");
+const buyroute=require("./routes/buy.js");
 
 const dbUrl="mongodb://127.0.0.1:27017/vegetables"
 const atlasurl=process.env.Atlas_db
@@ -87,6 +90,9 @@ app.get("/",(req,res)=>{
 });
 
 app.use("/home",home);
+app.use("/home",vegroute);
+app.use("/home",fruitroute);
+app.use("/home",buyroute);
 app.use(user);
 
 app.all("*",(req,res,next)=>{
