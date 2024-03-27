@@ -22,8 +22,8 @@ module.exports.buyrouter=async(req,res)=>{
 
         const newBuy= new buy(req.body.buy);
         await mailtoowner(req,res);
-        await newBuy.save();
         await mailtouser(req, res);
+        await newBuy.save();
         req.flash("succes","your product buyed succefully");
         res.render("thanku.ejs");
 
